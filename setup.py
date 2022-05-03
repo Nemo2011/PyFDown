@@ -1,11 +1,14 @@
 from setuptools import setup, find_packages
 
+with open("README.md", "r", encoding="utf-8") as f:
+    long_description = f.read()
+
 setup(
     name="PyFDown", 
     version="0.0.3",
     description="A fast downloader with Python",
     license="MIT",
-    long_description=open("README.md").read(),
+    long_description=long_description,
     author="Nemo2011",
     author_email="yimoxia@outlook.com",
     packages=find_packages("PyFDown", exclude=["test.py"]),
