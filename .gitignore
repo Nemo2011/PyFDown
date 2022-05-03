@@ -2,3 +2,4 @@ build/
 dist/
 PyFDown.egg-info/
 __pycache__/
+*.MP4
