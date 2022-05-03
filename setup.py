@@ -9,6 +9,7 @@ setup(
     description="A fast downloader with Python",
     license="MIT",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     author="Nemo2011",
     author_email="yimoxia@outlook.com",
     packages=find_packages("PyFDown", exclude=["test.py"]),
