@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setup(
     name="PyFDown", 
-    version="0.0.6",
+    version="0.0.7",
     description="A fast downloader with Python",
     license="MIT",
     long_description=long_description,

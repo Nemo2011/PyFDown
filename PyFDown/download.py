@@ -18,7 +18,7 @@ def size(url, headers: dict={'User-Agent': 'Mozilla/5.0'}):
     else:
         return 0
 
-def download(url, file, retry_times=3, chunks=128, each=1024*1024, user_headers: dict={'User-Agent': 'Mozilla/5.0'}):
+def download(url, file, retry_times=3, chunks=128, each=16*1024*1024, user_headers: dict={'User-Agent': 'Mozilla/5.0'}):
     fs = size(url, user_headers)
     f = open(file, "wb")
     @retry(tries=retry_times)
