@@ -18,7 +18,7 @@ def size(url, headers: dict={'User-Agent': 'Mozilla/5.0'}):
     else:
         return 0
 
-def download(url, file, retry_times=3, chunks=128, each=16*1024*1024, user_headers: dict={'User-Agent': 'Mozilla/5.0'}):
+def download(url, file, retry_times=3, chunks=128, each=1024*1024, user_headers: dict={'User-Agent': 'Mozilla/5.0'}):
     fs = size(url, user_headers)
     f = open(file, "wb")
     @retry(tries=retry_times)
@@ -35,7 +35,11 @@ def download(url, file, retry_times=3, chunks=128, each=16*1024*1024, user_heade
         for chunk in chunks:
             f.write(chunk)
         del chunks
-    each_final = min(fs, each)
+    predict_parts = fs / each
+    if predict_parts > 128:
+        each_final = int(fs / 128) + 1
+    else:
+        each_final = min(fs, each)
     parts = split(fs, each_final)
     print(f"Parts: {len(parts)}")
     bar = tqdm.tqdm(total=fs, desc=f"{file}")

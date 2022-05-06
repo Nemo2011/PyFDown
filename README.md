@@ -19,3 +19,8 @@ PyFDown is a python library. This library can downloading file fast.
     }
     download(URL, "test", user_headers=HEADERS)
 ```
+
+# Info
+
+Max parts: 128
+Default one part: 1MB
