@@ -1,1 +1,1 @@
-from .download import download as downloader
+from . import download as Downloader

@@ -16,9 +16,9 @@ def size(url, headers: dict={'User-Agent': 'Mozilla/5.0'}):
     if fs:
         return int(fs)
     else:
-        return 0
+        raise ValueError("Can't find the file. ")
 
-def download(url, file, retry_times=3, chunks=128, each=16*1024*1024, user_headers: dict={'User-Agent': 'Mozilla/5.0'}):
+def download(url, file, retry_times=3, chunks=128, each=16*1024*1024, max_parts=128, user_headers: dict={'User-Agent': 'Mozilla/5.0'}):
     fs = size(url, user_headers)
     f = open(file, "wb")
     @retry(tries=retry_times)
@@ -36,7 +36,7 @@ def download(url, file, retry_times=3, chunks=128, each=16*1024*1024, user_heade
             f.write(chunk)
         del chunks
     predict_parts = fs / each
-    if predict_parts > 128:
+    if predict_parts > max_parts:
         each_final = int(fs / 128) + 1
     else:
         each_final = min(fs, each)
